@@ -1,0 +1,15 @@
+<!-- inventario/templates/inventario/editar_categoria.html -->
+{% extends 'inventario/base.html' %}
+
+{% block title %}Editar Categoría{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="my-4">Editar Categoría</h1>
+    <form method="post" class="mb-4">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+    </form>
+</div>
+{% endblock %}

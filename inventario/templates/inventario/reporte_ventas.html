@@ -1,0 +1,36 @@
+<!-- inventario/templates/inventario/reporte_ventas.html -->
+{% extends 'inventario/base.html' %}
+
+{% block title %}Reporte de Ventas{% endblock %}
+
+{% block content %}
+<h2>Reporte de Ventas - {{ periodo }}</h2>
+<a href="{% url 'agregar_venta' %}" class="btn btn-success mb-3">Agregar Venta</a>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Fecha</th>
+            <th>Cliente</th>
+            <th>Total</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for venta in ventas %}
+        <tr>
+            <td>{{ venta.id }}</td>
+            <td>{{ venta.fecha }}</td>
+            <td>{{ venta.nombre_cliente }} {{ venta.apellido_cliente }}</td>
+            <td>${{ venta.total }}</td>
+            <td>
+                <a href="{% url 'editar_venta' venta.id %}" class="btn btn-warning btn-sm">Editar</a>
+                <a href="{% url 'eliminar_venta' venta.id %}" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar esta venta?');">Eliminar</a>
+                <a href="{% url 'generar_factura' venta.id %}" class="btn btn-primary btn-sm">Generar Factura</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<p><strong>Total Ventas:</strong> ${{ total_ventas }}</p>
+{% endblock %}

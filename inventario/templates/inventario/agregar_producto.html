@@ -1,0 +1,15 @@
+<!-- inventario/templates/inventario/agregar_producto.html -->
+{% extends 'inventario/base.html' %}
+
+{% block title %}Agregar Producto{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Agregar Producto</h2>
+    <form method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+</div>
+{% endblock %}

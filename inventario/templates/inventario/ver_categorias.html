@@ -1,0 +1,32 @@
+<!-- inventario/templates/inventario/ver_categorias.html -->
+{% extends 'inventario/base.html' %}
+
+{% block title %}Categorías{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="my-4">Categorías</h1>
+    <a href="{% url 'agregar_categoria' %}" class="btn btn-primary mb-4">Agregar Categoría</a>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for categoria in categorias %}
+            <tr>
+                <td>{{ categoria.id }}</td>
+                <td>{{ categoria.nombre }}</td>
+                <td>
+                    <a href="{% url 'editar_categoria' categoria.id %}" class="btn btn-warning btn-sm">Editar</a>
+                    <a href="{% url 'eliminar_categoria' categoria.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

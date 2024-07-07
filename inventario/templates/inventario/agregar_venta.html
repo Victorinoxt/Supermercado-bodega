@@ -1,0 +1,32 @@
+<!-- inventario/templates/inventario/agregar_venta.html -->
+{% extends "inventario/base.html" %}
+
+{% block title %}Agregar Venta{% endblock %}
+
+{% block content %}
+<h2>Agregar Venta</h2>
+<form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="nombre_cliente">Nombre del Cliente</label>
+        <input type="text" id="nombre_cliente" name="nombre_cliente" class="form-control" required>
+    </div>
+    <div class="form-group mt-3">
+        <label for="apellido_cliente">Apellido del Cliente</label>
+        <input type="text" id="apellido_cliente" name="apellido_cliente" class="form-control" required>
+    </div>
+    <div class="form-group mt-3">
+        <label for="productos">Productos</label>
+        <select id="productos" name="productos" class="form-control" multiple required>
+            {% for producto in productos %}
+                <option value="{{ producto.id }}">{{ producto.nombre }} - ${{ producto.precio }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group mt-3">
+        <label for="cantidades">Cantidades</label>
+        <input type="number" id="cantidades" name="cantidades" class="form-control" multiple required>
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">Realizar Venta</button>
+</form>
+{% endblock %}

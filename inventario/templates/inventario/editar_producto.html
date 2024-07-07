@@ -1,0 +1,38 @@
+<!-- inventario/templates/inventario/editar_producto.html -->
+{% extends 'inventario/base.html' %}
+{% block title %}Editar Producto{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <h1 class="mb-4">Editar Producto</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-3">
+                {{ form.nombre.label_tag }} 
+                {{ form.nombre }}
+            </div>
+            <div class="mb-3">
+                {{ form.descripcion.label_tag }}
+                {{ form.descripcion }}
+            </div>
+            <div class="mb-3">
+                {{ form.precio.label_tag }}
+                {{ form.precio }}
+            </div>
+            <div class="mb-3">
+                {{ form.cantidad.label_tag }}
+                {{ form.cantidad }}
+            </div>
+            <div class="mb-3">
+                {{ form.imagen.label_tag }}
+                {{ form.imagen }}
+            </div>
+            <div class="mb-3">
+                {{ form.categoria.label_tag }}
+                {{ form.categoria }}
+            </div>
+            <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Guardar Cambios</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "inventario/base.html" %}
+
+{% block title %}Editar Venta{% endblock %}
+
+{% block content %}
+<h2>Editar Venta</h2>
+<form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="nombre_cliente">Nombre del Cliente</label>
+        {{ form.nombre_cliente }}
+    </div>
+    <div class="form-group mt-3">
+        <label for="apellido_cliente">Apellido del Cliente</label>
+        {{ form.apellido_cliente }}
+    </div>
+    <div class="form-group mt-3">
+        <label for="productos">Productos</label>
+        <select id="productos" name="productos" class="form-control" multiple required>
+            {% for producto in productos %}
+                <option value="{{ producto.id }}" {% if producto.id in detalles_ids %}selected{% endif %}>
+                    {{ producto.nombre }} - ${{ producto.precio }}
+                </option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group mt-3">
+        <label for="cantidades">Cantidades</label>
+        {% for detalle in venta.detalles.all %}
+            <input type="number" id="cantidades" name="cantidades" class="form-control" value="{{ detalle.cantidad }}" multiple required>
+        {% endfor %}
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">Actualizar Venta</button>
+</form>
+{% endblock %}

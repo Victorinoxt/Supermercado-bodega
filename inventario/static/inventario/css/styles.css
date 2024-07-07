@@ -1,0 +1,61 @@
+/* static/css/styles.css */
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
+h1, h2 {
+    color: #333;
+}
+
+.card {
+    margin-bottom: 20px;
+}
+
+.card-body {
+    text-align: center;
+    padding: 10px;
+}
+
+.card-img-top {
+    height: 150px; /* Hacer las imágenes más pequeñas */
+    object-fit: cover;
+}
+
+.card-title {
+    font-size: 1.25rem; /* Ajustar el tamaño del título */
+}
+
+.card-text {
+    font-size: 1rem; /* Ajustar el tamaño del texto */
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.position-relative .badge {
+    position: absolute;
+    top: 0;
+    left: 100%; /* Cambiado de start a left */
+    transform: translate(-50%, -50%);
+}
+
+.list-group-item {
+    display: flex;
+    align-items: center;
+}
+
+.list-group-item img {
+    margin-right: 15px;
+}
+
+.table img {
+    height: 50px;
+    object-fit: cover;
+}
+
+.table th, .table td {
+    vertical-align: middle;
+}
