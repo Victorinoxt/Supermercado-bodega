@@ -1,3 +1,5 @@
+# inventario/models.py
+
 from django.db import models
 
 class Categoria(models.Model):
@@ -18,9 +20,9 @@ class Producto(models.Model):
         return self.nombre
 
 class Venta(models.Model):
+    fecha = models.DateField(auto_now_add=True)
     nombre_cliente = models.CharField(max_length=100)
     apellido_cliente = models.CharField(max_length=100)
-    fecha = models.DateField(auto_now_add=True)
     total = models.DecimalField(max_digits=10, decimal_places=2, default=0)
 
     def __str__(self):

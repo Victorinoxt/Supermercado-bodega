@@ -202,15 +202,17 @@ def agregar_venta(request):
         form = VentaForm(request.POST)
         if form.is_valid():
             venta = form.save(commit=False)
+            venta.nombre_cliente = request.POST.get('nombre_cliente')
+            venta.apellido_cliente = request.POST.get('apellido_cliente')
             venta.total = 0  # Inicializa el total en 0
             venta.save()
             total_venta = 0
-            for producto_id, cantidad in zip(request.POST.getlist('productos'), request.POST.getlist('unidades')):
+            for producto_id, unidades in zip(request.POST.getlist('productos'), request.POST.getlist('unidades')):
                 producto = get_object_or_404(Producto, id=producto_id)
-                cantidad = int(cantidad)
-                precio_total = producto.precio * cantidad
+                unidades = int(unidades)
+                precio_total = producto.precio * unidades
                 total_venta += precio_total
-                DetalleVenta.objects.create(venta=venta, producto=producto, cantidad=cantidad, precio_unitario=producto.precio, precio_total=precio_total)
+                DetalleVenta.objects.create(venta=venta, producto=producto, cantidad=unidades, precio_unitario=producto.precio, precio_total=precio_total)
             venta.total = total_venta  # Actualiza el total de la venta
             venta.save()
             messages.success(request, 'Venta realizada exitosamente.')
@@ -229,12 +231,12 @@ def editar_venta(request, venta_id):
             venta = form.save(commit=False)
             DetalleVenta.objects.filter(venta=venta).delete()
             total_venta = 0
-            for producto_id, cantidad in zip(request.POST.getlist('productos'), request.POST.getlist('unidades')):
+            for producto_id, unidades in zip(request.POST.getlist('productos'), request.POST.getlist('unidades')):
                 producto = get_object_or_404(Producto, id=producto_id)
-                cantidad = int(cantidad)
-                precio_total = producto.precio * cantidad
+                unidades = int(unidades)
+                precio_total = producto.precio * unidades
                 total_venta += precio_total
-                DetalleVenta.objects.create(venta=venta, producto=producto, cantidad=cantidad, precio_unitario=producto.precio, precio_total=precio_total)
+                DetalleVenta.objects.create(venta=venta, producto=producto, cantidad=unidades, precio_unitario=producto.precio, precio_total=precio_total)
             venta.total = total_venta  # Actualiza el total de la venta
             venta.save()
             messages.success(request, 'Venta actualizada exitosamente.')

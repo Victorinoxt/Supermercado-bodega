@@ -1,3 +1,5 @@
+# inventario/forms.py
+
 from django import forms
 from .models import Producto, Categoria, Venta, DetalleVenta
 
